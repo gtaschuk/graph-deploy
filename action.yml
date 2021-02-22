@@ -1,0 +1,28 @@
+name: 'Deploy to the Graph'
+description: 'Deploy a subgraph to the graph'
+branding:
+  icon: "upload-cloud"
+  color: "blue"
+inputs:
+  graph_access_token:
+    description: 'Your access token to deploy to the graph'
+    required: true
+  graph_subgraph_name:
+    description: 'The name of the subgraph'
+    required: true
+  graph_account:
+    description: 'The account or organization that the subgraph is under'
+    required: true
+  graph_config_file:
+    description: 'The config file you will use to deploy'
+    required: false
+    default: subgraph.yml
+outputs:
+  success:
+    description: "The Success/Failure of the action"
+runs:
+  using: "node12"
+  main: 'index.js'
+  #steps:
+    #- id: deploy
+      #run: graph deploy ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/

@@ -1,0 +1,28 @@
+{
+  "name": "graph-deploy",
+  "version": "0.0.1",
+  "description": "A simple github action that deploys a subgraph to the graph",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtaschuk/graph-deploy.git"
+  },
+  "keywords": [
+    "graph",
+    "ethereum",
+    "github",
+    "github-actions"
+  ],
+  "author": "gtaschuk",
+  "bugs": {
+    "url": "https://github.com/gtaschuk/graph-deploy/issues"
+  },
+  "homepage": "https://github.com/gtaschuk/graph-deploy#readme",
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.18.0",
+    "@actions/core": "^1.2.6"
+  }
+}
