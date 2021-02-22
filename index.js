@@ -6,7 +6,9 @@ const { execSync } = require("child_process");
   let deployCmd = `graph deploy ${core.getInput('graph_account')}/${core.getInput('graph_subgraph_name')} ${core.getInput('graph_config_file')} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/`
 
   try {
+    console.log("Authenticating with access token...")
     execSync(authCmd)
+    console.log("Deploying to graph protocol...")
     execSync(deployCmd)
 
     core.setOutput(
