@@ -23,4 +23,4 @@ const { execSync } = require("child_process");
       //"Subgraph deploy skipped - nothing to update"
     //);
   }
-})
+})();
