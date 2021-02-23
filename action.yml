@@ -29,7 +29,7 @@ runs:
         echo "$(yarn global bin)" >> $GITHUB_PATH
       shell: bash
     - id: auth
-      run: graph auth https://api.thegraph.com/deploy/${{inputs.graph_access_token}}
+      run: graph auth https://api.thegraph.com/deploy/ ${{inputs.graph_access_token}}
       shell: bash
     - id: deploy
       run: graph deploy ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
