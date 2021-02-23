@@ -24,7 +24,9 @@ runs:
   using: "composite"
   steps:
     - id: install-graph-cli
-      run: yarn global add @graphprotocol/graph-cli
+      run: |
+        yarn global add @graphprotocol/graph-cli
+        echo "$(yarn global bin)" >> $GITHUB_PATH
       shell: bash
     - id: auth
       run: graph auth https://api.thegraph.com/deploy/${{inputs.graph_access_token}}
