@@ -21,8 +21,16 @@ outputs:
   success:
     description: "The Success/Failure of the action"
 runs:
-  using: "node12"
-  main: 'index.js'
-  #steps:
-    #- id: deploy
-      #run: graph deploy ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+  using: "composite"
+  steps:
+    - id: install-graph-cli
+      run: |
+        yarn global add @graphprotocol/graph-cli
+        echo "$(yarn global bin)" >> $GITHUB_PATH
+      shell: bash
+    #- id: auth # cannot launch auth without x11.  Passing access token as a param in next step as a workaround
+      #run: graph auth https://api.thegraph.com/deploy/ ${{inputs.graph_access_token}}
+      #shell: bash
+    - id: deploy
+      run: graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+      shell: bash
