@@ -25,6 +25,7 @@ runs:
   steps:
     - id: install graph-cli
       run: yarn global add @graphprotocol/graph-cli
+      shell: bash
     - id: auth
       run: graph auth https://api.thegraph.com/deploy/${{inputs.graph_access_token}}
       shell: bash
