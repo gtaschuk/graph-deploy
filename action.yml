@@ -23,7 +23,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - id: install graph-cli
+    - id: install-graph-cli
       run: yarn global add @graphprotocol/graph-cli
       shell: bash
     - id: auth
