@@ -1,5 +1,5 @@
-name: 'Deploy to the Graph'
-description: 'Deploy a subgraph to the graph'
+name: 'Graph Deploy'
+description: 'Deploy a subgraph to thegraph.com to index Ethereum and IPFS'
 branding:
   icon: "upload-cloud"
   color: "blue"
@@ -11,7 +11,7 @@ inputs:
     description: 'The name of the subgraph'
     required: true
   graph_account:
-    description: 'The account or organization that the subgraph is under'
+    description: 'The account or organization that the subgraph is owned by'
     required: true
   graph_config_file:
     description: 'The config file you will use to deploy'
