@@ -30,6 +30,6 @@ jobs:
         with:
           graph_access_token: ${{secrets.GRAPH_ACCESS_TOKEN}}
           graph_subgraph_name: "your-subgraph-name"
-          graph_account: "your-github-name-or-organization'
+          graph_account: "your-github-name-or-organization"
           graph_config_file: "subgraph.yml"
 ```
