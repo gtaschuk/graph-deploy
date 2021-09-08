@@ -1,8 +1,8 @@
 name: 'Graph Deploy'
 description: 'Deploy a subgraph to thegraph.com to index Ethereum and IPFS'
 branding:
-  icon: "upload-cloud"
-  color: "blue"
+  icon: 'upload-cloud'
+  color: 'blue'
 inputs:
   graph_access_token:
     description: 'Your access token to deploy to the graph'
@@ -17,20 +17,27 @@ inputs:
     description: 'The config file you will use to deploy'
     required: false
     default: subgraph.yml
+  graph_deploy_studio:
+    description: 'Deploy the subgraph to studio? (true/false)'
+    required: false
+    default: false
 outputs:
   success:
-    description: "The Success/Failure of the action"
+    description: 'The Success/Failure of the action'
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - id: install-graph-cli
       run: |
         yarn global add @graphprotocol/graph-cli
         echo "$(yarn global bin)" >> $GITHUB_PATH
       shell: bash
-    #- id: auth # cannot launch auth without x11.  Passing access token as a param in next step as a workaround
-      #run: graph auth https://api.thegraph.com/deploy/ ${{inputs.graph_access_token}}
-      #shell: bash
-    - id: deploy
+    - id: deploy to graph studio
+      if: inputs.graph_deploy_studio
+      run: graph deploy --studio --deploy-key ${{inputs.graph_access_token}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+        fi
+      shell: bash
+    - id: deploy to the hosted service
+      if: !inputs.graph_deploy_studio
       run: graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
       shell: bash
