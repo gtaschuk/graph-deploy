@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/gtaschuk/graph-deploy#readme",
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.18.0",
+    "@graphprotocol/graph-cli": "0.18.0",
     "@actions/core": "^1.2.6"
   }
 }
