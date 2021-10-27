@@ -32,12 +32,11 @@ runs:
         yarn global add @graphprotocol/graph-cli
         echo "$(yarn global bin)" >> $GITHUB_PATH
       shell: bash
-    - id: deploy to graph studio
-      if: inputs.graph_deploy_studio
-      run: graph deploy --studio --deploy-key ${{inputs.graph_access_token}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+    - id: deploy
+      run: |
+        if [ "${{inputs.graph_deploy_studio}}" = "true" ]; then
+           graph deploy --studio --deploy-key ${{inputs.graph_access_token}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+        else
+           graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
         fi
-      shell: bash
-    - id: deploy to the hosted service
-      if: !inputs.graph_deploy_studio
-      run: graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
       shell: bash
