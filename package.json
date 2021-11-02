@@ -1,6 +1,6 @@
 {
   "name": "graph-deploy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple github action that deploys a subgraph to the graph",
   "main": "index.js",
   "scripts": {
