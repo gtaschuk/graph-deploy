@@ -35,7 +35,7 @@ runs:
     - id: deploy
       run: |
         if [ "${{inputs.graph_deploy_studio}}" = "true" ]; then
-           graph deploy --studio --deploy-key ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
+           graph deploy --studio --access-token ${{inputs.graph_access_token}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}}
         else
            graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
         fi
