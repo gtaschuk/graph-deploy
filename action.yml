@@ -5,8 +5,14 @@ branding:
   color: 'blue'
 inputs:
   graph_access_token:
-    description: 'Your access token to deploy to the graph'
-    required: true
+    description: 'Your access token to deploy to the hosted graph'
+    required: false
+  graph_deploy_key:
+    description: 'Your deploy key for the subgraph studio'
+    required: false
+  graph_version_label:
+    description: 'Your version label for subgraph studio'
+    required: false
   graph_subgraph_name:
     description: 'The name of the subgraph'
     required: true
@@ -35,7 +41,7 @@ runs:
     - id: deploy
       run: |
         if [ "${{inputs.graph_deploy_studio}}" = "true" ]; then
-           graph deploy --studio --access-token ${{inputs.graph_access_token}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}}
+           graph deploy --studio --deploy-key ${{inputs.graph_deploy_key}} ${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --version-label ${{inputs.graph_version_label}}
         else
            graph deploy --access-token ${{inputs.graph_access_token}} ${{inputs.graph_account}}/${{inputs.graph_subgraph_name}} ${{inputs.graph_config_file}} --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/
         fi
