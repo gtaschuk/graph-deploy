@@ -35,7 +35,7 @@ runs:
   steps:
     - id: install-graph-cli
       run: |
-        yarn global add @graphprotocol/graph-cli
+        yarn global add @graphprotocol/graph-cli@0.28.0
         echo "$(yarn global bin)" >> $GITHUB_PATH
       shell: bash
     - id: deploy
